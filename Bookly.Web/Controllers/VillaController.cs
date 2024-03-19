@@ -26,9 +26,13 @@ namespace Bookly.Web.Controllers
         [HttpPost]
         public IActionResult Create(Villa obj)
         {
-            _db.Villas.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Villas.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }
