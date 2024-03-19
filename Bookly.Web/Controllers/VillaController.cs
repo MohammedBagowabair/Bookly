@@ -1,4 +1,5 @@
-﻿using Bookly.Infrastructure.Data;
+﻿using Bookly.Domain.Entities;
+using Bookly.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookly.Web.Controllers
@@ -20,6 +21,14 @@ namespace Bookly.Web.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Villa obj)
+        {
+            _db.Villas.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
