@@ -45,7 +45,7 @@ namespace Bookly.Web.Controllers
                 _db.VillaNumbers.Add(obj.VillaNumber);
                 _db.SaveChanges();
                 TempData["success"] = "The villa Number has been created successfully.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             if (roomNumberExsist)
             {
@@ -87,7 +87,7 @@ namespace Bookly.Web.Controllers
                 _db.VillaNumbers.Update(villaNumberVM.VillaNumber);
                 _db.SaveChanges();
                 TempData["success"] = "The villa Number has been Updated successfully.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             villaNumberVM.VillaList = _db.Villas.ToList().Select(u => new SelectListItem
             {
@@ -128,7 +128,7 @@ namespace Bookly.Web.Controllers
                 _db.VillaNumbers.Remove(objFromDb);
                 _db.SaveChanges();
                 TempData["success"] = "The villa has been deleted successfully.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "The villa Number Could not be Deleted.";
             return View();
