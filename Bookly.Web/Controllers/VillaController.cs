@@ -39,5 +39,15 @@ namespace Bookly.Web.Controllers
             }
             return View();
         }
+
+        public IActionResult Update(int villaId)
+        {
+            Villa? obj = _db.Villas.FirstOrDefault(u => u.Id == villaId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
     }
 }
