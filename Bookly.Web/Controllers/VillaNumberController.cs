@@ -38,16 +38,26 @@ namespace Bookly.Web.Controllers
         [HttpPost]
         public IActionResult Create(VillaNumberVM obj)
         {
-            
-
-            if (ModelState.IsValid)
+            bool roomNumberExsist = _db.VillaNumbers.Any(u => u.Villa_Number == obj.VillaNumber.Villa_Number);
+ 
+            if (ModelState.IsValid && !roomNumberExsist)
             {
                 _db.VillaNumbers.Add(obj.VillaNumber);
                 _db.SaveChanges();
                 TempData["success"] = "The villa Number has been created successfully.";
                 return RedirectToAction("Index");
             }
-            return View();
+            if (roomNumberExsist)
+            {
+                TempData["error"] = "The villa Number already exists.";
+
+                obj.VillaList = _db.Villas.ToList().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+            }
+            return View(obj);
         }
 
         public IActionResult Update(int villaId)
