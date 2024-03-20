@@ -1,6 +1,7 @@
 ﻿using Bookly.Domain.Entities;
 using Bookly.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookly.Web.Controllers
 {
@@ -20,6 +21,14 @@ namespace Bookly.Web.Controllers
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> List = _db.Villas.ToList().Select(u=> new SelectListItem
+            {
+                Text = u.Name,
+                Value=u.Id.ToString()
+            });
+
+            ViewData["VillaList"] = List;
+
             return View();
         }
 
