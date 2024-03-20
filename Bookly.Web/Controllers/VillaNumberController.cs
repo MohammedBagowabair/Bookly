@@ -3,6 +3,7 @@ using Bookly.Infrastructure.Data;
 using Bookly.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookly.Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace Bookly.Web.Controllers
         }
         public IActionResult Index()
         {
-            var villasNumbers = _db.VillaNumbers.ToList();
+            var villasNumbers = _db.VillaNumbers.Include(u=>u.Villa).ToList();
             return View(villasNumbers);
         }
 
