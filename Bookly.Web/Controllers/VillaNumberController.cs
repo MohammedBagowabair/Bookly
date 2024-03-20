@@ -1,5 +1,6 @@
 ﻿using Bookly.Domain.Entities;
 using Bookly.Infrastructure.Data;
+using Bookly.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -21,25 +22,26 @@ namespace Bookly.Web.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> List = _db.Villas.ToList().Select(u=> new SelectListItem
+            VillaNumberVM villaNumberVM = new()
             {
-                Text = u.Name,
-                Value=u.Id.ToString()
-            });
-
-            ViewData["VillaList"] = List;
-
-            return View();
+               VillaList = _db.Villas.ToList().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                })
+            };
+                     
+            return View(villaNumberVM);
         }
 
         [HttpPost]
-        public IActionResult Create(VillaNumber obj)
+        public IActionResult Create(VillaNumberVM obj)
         {
             
 
             if (ModelState.IsValid)
             {
-                _db.VillaNumbers.Add(obj);
+                _db.VillaNumbers.Add(obj.VillaNumber);
                 _db.SaveChanges();
                 TempData["success"] = "The villa Number has been created successfully.";
                 return RedirectToAction("Index");
