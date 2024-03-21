@@ -69,5 +69,10 @@ namespace Bookly.Infrastructure.Repository
         {
            dbset.Remove(entity);
         }
+
+        bool IRepository<T>.Any(Expression<Func<T, bool>> filter)
+        {
+           return dbset.Any(filter);
+        }
     }
 }

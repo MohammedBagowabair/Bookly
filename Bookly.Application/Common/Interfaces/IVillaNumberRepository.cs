@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookly.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bookly.Application.Common.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IVillaNumberRepository:IRepository<VillaNumber>
     {
-        IVillaRepository Villa { get; }
-        IVillaNumberRepository VillaNumber { get; }
-        void Save();
-
+        void Update(VillaNumber entity);
     }
 }
