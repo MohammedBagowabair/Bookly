@@ -1,4 +1,7 @@
+using Bookly.Application.Common.Interfaces;
+using Bookly.Domain.Entities;
 using Bookly.Infrastructure.Data;
+using Bookly.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,8 @@ builder.Services.AddControllersWithViews();
 //- Register ApplicationDbContext to program class file 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IVillaRepository, VillaRepository>();
 
 var app = builder.Build();
 

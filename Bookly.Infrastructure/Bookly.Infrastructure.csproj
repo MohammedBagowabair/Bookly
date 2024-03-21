@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bookly.Domain\Bookly.Domain.csproj" />
+    <ProjectReference Include="..\Bookly.Application\Bookly.Application.csproj" />
   </ItemGroup>
 
 </Project>
