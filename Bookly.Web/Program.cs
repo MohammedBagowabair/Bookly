@@ -17,6 +17,13 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.AccessDeniedPath = "/Account/AccessDenied";
+    option.LoginPath = "/Account/Login";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
