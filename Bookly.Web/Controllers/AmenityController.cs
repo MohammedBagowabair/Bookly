@@ -1,11 +1,14 @@
 ﻿using Bookly.Application.Common.Interfaces;
+using Bookly.Application.Common.Utility;
 using Bookly.Domain.Entities;
 using Bookly.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookly.Web.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class AmenityController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

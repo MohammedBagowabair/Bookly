@@ -1,10 +1,12 @@
 ﻿using Bookly.Application.Common.Interfaces;
 using Bookly.Domain.Entities;
 using Bookly.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookly.Web.Controllers
 {
+    [Authorize]
     public class VillaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
