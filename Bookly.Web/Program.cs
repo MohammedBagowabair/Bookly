@@ -2,6 +2,7 @@ using Bookly.Application.Common.Interfaces;
 using Bookly.Domain.Entities;
 using Bookly.Infrastructure.Data;
 using Bookly.Infrastructure.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
