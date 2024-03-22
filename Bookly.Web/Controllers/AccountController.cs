@@ -1,5 +1,6 @@
 ﻿using Bookly.Application.Common.Interfaces;
 using Bookly.Domain.Entities;
+using Bookly.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +23,15 @@ namespace Bookly.Web.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            returnUrl ??= Url.Content("~/");
+
+            LoginVM loginVM = new()
+            {
+                RedirectUrl = returnUrl
+            };
+            return View(loginVM);
         }
         public IActionResult Register()
         {
