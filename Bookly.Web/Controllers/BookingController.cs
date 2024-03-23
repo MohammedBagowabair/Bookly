@@ -110,5 +110,11 @@ namespace Bookly.Web.Controllers
             }
             return View(bookingId);
         }
+
+
+        public IActionResult Index()
+        {
+            return View();
+        }
     } 
 }
