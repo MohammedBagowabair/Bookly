@@ -112,6 +112,7 @@ namespace Bookly.Web.Controllers
         }
 
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
