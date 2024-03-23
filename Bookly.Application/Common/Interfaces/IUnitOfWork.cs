@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookly.Infrastructure.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Bookly.Application.Common.Interfaces
         IVillaNumberRepository VillaNumber { get; }
         IAmenityRepository Amenity { get; }
         IBookingRepository Booking { get; }
+        IApplicationUserRepository User { get; }
         void Save();
 
     }
