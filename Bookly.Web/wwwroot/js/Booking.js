@@ -13,7 +13,7 @@ function loadDataTable(status) {
 
         "ajax": {
 
-            url: '/booking/getall' ? status = '+status
+            url: '/booking/getall? status = '+status
 
         },
 
